@@ -10,6 +10,7 @@ class TestController extends SiteController
         if(isset($_POST['gotest'])){
             $name = $_POST['name'];
             $cat = $_POST['cat'];
+            $cat2 = $_POST['cat2'];
             $yaz = $_POST['yaz'];
             $errors = false;
 
@@ -46,14 +47,22 @@ class TestController extends SiteController
 
     public function actionEndtest(){
         $name = $_POST['name'];
+        $cat = $_POST['cat'];
         $obshhid = $_POST['obshhid'];
         $gruupa = $_POST['gruupa'];
-        $cat = $_POST['cat'];
-        for ($i = 1; $i<=30; $i++){
-            echo $otvr1 = $_POST['otvr1'];
-        }
 
+        for ($i = 1; $i<=30; $i++){
+            $otv[]= $_POST['otvr'.$i];
+        }
+        //$otv = $otv[];
+        $m = Test::saveTest($name,$obshhid,$gruupa,$cat,$otv);
         require_once(ROOT . '/views/test/end_test.php');
         return true;
+    }
+
+    public function actionLoadcat()
+    {
+        $text = 'fsdsdfsdfs';//= Test::LoadCat(1);
+        echo $text;
     }
 }

@@ -91,14 +91,13 @@ $(function(){
 
     $('#cat').change(function(){
         var code = $(this).val();
-        if(code==1){
-            $('#cat2').html('<option>Строительная отрасль</option><option>Пищевая промышленность</option><option>Организации сельского хозяйства</option>');
-        }
-        if(code==2){
-            $('#cat2').html('<option>Социальная сфера (образование, культура, здравоохранение)</option><option>Организации, осуществляющие охрану и охранную деятельность </option><option>Организации оптовой и розничной торговли</option>');
-        }
+        alert(code);
+                $.post("loadcat",{code}, function (data) {
+                   $('#cccat').val(data);
 
-    });
+                });
+
+            });
 
 });
 

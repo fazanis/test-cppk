@@ -11,6 +11,8 @@
                     <tr><td>Тест начат</td><td><?=$datenach?></td></tr>
                     <tr><td>Осталось времени &nbsp;&nbsp;</td><td>
                             <span id="my_timer" style="font-weight: bold;">00:16:00</span>
+                    <?=$name?>
+                    <?=$_POST['cat2']?>
                 </table>
                 <?foreach ($result as $test):
                     $i++;?>
@@ -30,8 +32,9 @@
                 <tr><td>№</td><td>Ответ</td></tr>
                 <form action="end" method="post">
                     <input type="hidden" name="vremproh" id="my_timer2">
-                    <input type="hidden" name='cat' id="catend" value='<?=$cat?>'>
+                    <input type="text" name='cat' id="catend" value='<?=$_POST['cat']?>'>
                     <input type="hidden" name='name' id="nameend" value='<?=$name?>'>
+                    <?=$cat2?>
                     <?for ($x=0; $x++<30;){?>
                         <tr><td>
                                 <?=$x?>
@@ -80,10 +83,10 @@
                     <option value="<?=$itemCat['id']?>"><?=$itemCat['name']?></option>
                 <? endforeach;?>
             </select>
+            <input id="cccat">
             <label for="inputEmail">Выберите напрвление</label>
             <select class="form-control" name="cat2" id="cat2">
                 <option></option>
-
                 <? foreach ($cat as $itemCat):?>
                     <option value="<?=$itemCat['id']?>"><?=$itemCat['name']?></option>
                 <? endforeach;?>

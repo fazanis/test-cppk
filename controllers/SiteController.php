@@ -18,8 +18,9 @@ class SiteController
         $latestProducts = Product::getLatestProducts(6);
 
         // Список товаров для слайдера
-        $sliderProducts = Product::getRecommendedProducts();
+        $sliderProducts = Product::getRecommendedProducts();*/
 
+        $title = "Тестирование";
         // Подключаем вид*/
         require_once(ROOT . '/views/site/index.php');
         return true;

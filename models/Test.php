@@ -120,9 +120,43 @@ class Test
        return $data.' '.$h.':'.$m.':'.$s;
     }
 
-    public static function saveTest()
+    public static function saveTest($name,$obshhid,$gruupa,$cat,$otv)
     {
+        $db = Db::getConnection();
+        $i = 0;
 
+        foreach ($otv as $otvet) {
+            $i++;
+            $endotvet[] = $otvet;
+            $otvper[] = 'otv'.$i;
+        }
+        $endotvet_s = implode(',',$endotvet);
+        $otvetper_s = implode(',',$otvper);
+
+
+        $sql = 'INSERT INTO test_otvet (`cat`,`fio`) VALUES("'.$cat.'","'.$name.'")';
+        //$sql = "INSERT INTO test_otvet (fio) VALUES('".$name."')";
+        $result = $db->prepare($sql);
+        return $result->execute();
+    }
+
+    public static function LoadCat($id){
+        $db = Db::getConnection();
+        $select = "SELECT * FROM test_cat_litle WHERE id_cat = 1";
+        $result = $db->prepare($select);
+        $result->bindParam(':id', $cat, PDO::PARAM_INT);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        $i = 1;
+        $testList = array();
+
+        while ($row = $result->fetch()) {
+            $testList['id'] = $row['id'];
+            $testList['name'] = $row['name'];
+        }
+
+       return $testList;
     }
 
 
