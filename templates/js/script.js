@@ -1,0 +1,104 @@
+function onof(id){
+$.post("script.php", {
+operation:"onof",id:id
+});
+location.reload();
+
+}
+function dalee(){
+	$("#nachalo").css('display', 'none');
+}
+
+
+function startTimer() {
+
+    var my_timer = document.getElementById("my_timer");
+    var time = my_timer.innerHTML;
+    var arr = time.split(":");
+    var h = arr[0];
+    var m = arr[1];
+    var s = arr[2];
+    if (s == 0) {
+        if (m == 0) {
+            if (h == 0) {
+                alert("Осталась одна минута");
+                $('input:radio').attr('disabled', 'disabled');
+                return;
+            }
+            h--;
+            m = 60;
+            if (h < 10) h = "0" + h;
+        }
+        m--;
+        if (m < 10) m = "0" + m;
+        s = 59;
+    }
+    else s--;
+    if (s < 10) s = "0" + s;
+    document.getElementById("my_timer").innerHTML = h+":"+m+":"+s;
+    $('#my_timer2').val(my_timer.innerHTML);
+    setTimeout(startTimer, 1000);
+}
+
+
+function addotvet(){
+	vrem=$('#my_timer2').val();
+	$('#vopros').css('display','none');
+	$('#rezult').css('display','inline');
+	obsh=0;
+	/*rezotv=0;*/
+	for(var i=0;i<31;i++)
+	{
+		rezotv=$('input:radio[name=vop'+i+']:checked').val();
+		
+		$('#otvrez'+i).val(rezotv);
+		if(rezotv==''){
+			$('#otv'+i).html('<span style="color:green">Пока нет ответа</span>');
+			//rezotv==0;
+		}
+		else if(rezotv==1){
+			$('#otv'+i).html('<span style="color:blue">Ответ сохранен</span>');
+			
+			obsh++;
+		}else if(rezotv==0){
+			$('#otv'+i).html('<span style="color:blue">Ответ сохранен</span>');
+		}
+		if(rezotv!='' || rezotv!=0){
+		
+		}
+	}
+	$('#obsh').text(obsh);
+	$('#obshhid').val(obsh);
+	$('#vrem').text(vrem);
+	
+}
+
+function reversotv(){
+	ispr=$('#ispr').val()-1;
+	alert(ispr);
+	$('#ispr').val(ispr);
+	$('#kolispr').text(ispr);
+	if (ispr<=0){
+		$('#reversotvb').prop('disabled',true);
+	}
+	
+	$('#rezult').css('display','none');
+	$('#vopros').css('display','inline');
+	
+}
+
+$(function(){
+
+    $('#cat').change(function(){
+        var code = $(this).val();
+        if(code==1){
+            $('#cat2').html('<option>Строительная отрасль</option><option>Пищевая промышленность</option><option>Организации сельского хозяйства</option>');
+        }
+        if(code==2){
+            $('#cat2').html('<option>Социальная сфера (образование, культура, здравоохранение)</option><option>Организации, осуществляющие охрану и охранную деятельность </option><option>Организации оптовой и розничной торговли</option>');
+        }
+
+    });
+
+});
+
