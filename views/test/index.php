@@ -17,7 +17,7 @@
                     $i++;?>
 
                     <p><b><?=$i?>) <?=$test['vopros']?></b></p>
-                    <?=Test::loadVopros($test['id'])?>
+                    
                     <?foreach ($test['otvet'] as $itemTest):?>
                     <p><input type="radio" id="vop<?=$test['id']?>" name="vop<?=$test['id']?>" value="<?=$itemTest['prav']?>"><?=$itemTest['otvet']?></p>
                     <?endforeach;?>
