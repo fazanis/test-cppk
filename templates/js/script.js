@@ -91,10 +91,8 @@ $(function(){
 
     $('#cat').change(function(){
         var code = $(this).val();
-        alert(code);
-                $.post("loadcat",{code}, function (data) {
-                   $('#cccat').val(data);
-
+                $.post("/load/",{code}, function (data) {
+                   $('#cat2').html(data);
                 });
 
             });

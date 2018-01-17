@@ -83,12 +83,12 @@
                     <option value="<?=$itemCat['id']?>"><?=$itemCat['name']?></option>
                 <? endforeach;?>
             </select>
-            <input id="cccat">
             <label for="inputEmail">Выберите напрвление</label>
+           
             <select class="form-control" name="cat2" id="cat2">
                 <option></option>
-                <? foreach ($cat as $itemCat):?>
-                    <option value="<?=$itemCat['id']?>"><?=$itemCat['name']?></option>
+                <? foreach ($litlecat as $itemlitlecat):?>
+                    <option value="<?=$itemlitlecat['id']?>"><?=$itemlitlecat['name']?></option>
                 <? endforeach;?>
             </select>
             <label for="inputEmail">Введите ФИО</label>

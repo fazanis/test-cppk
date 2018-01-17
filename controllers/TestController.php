@@ -60,9 +60,17 @@ class TestController extends SiteController
         return true;
     }
 
-    public function actionLoadcat()
+    public function actionAjaxCat()
     {
-        $text = 'fsdsdfsdfs';//= Test::LoadCat(1);
-        echo $text;
+
+        $id = $_POST['code'];
+        $litlecat = Test::LoadCat($id);
+
+        foreach ($litlecat as $itlitlecat)
+        {
+            echo '<option value="'.$itlitlecat['name'].'">'.$itlitlecat['name'].'</option>';
+        }
+
+        return true;
     }
 }

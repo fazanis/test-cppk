@@ -142,21 +142,20 @@ class Test
 
     public static function LoadCat($id){
         $db = Db::getConnection();
-        $select = "SELECT * FROM test_cat_litle WHERE id_cat = 1";
+        $select = "SELECT * FROM test_cat_litle WHERE id_cat = :id";
         $result = $db->prepare($select);
-        $result->bindParam(':id', $cat, PDO::PARAM_INT);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
 
         $i = 1;
-        $testList = array();
-
+        $vopList = array();
         while ($row = $result->fetch()) {
-            $testList['id'] = $row['id'];
-            $testList['name'] = $row['name'];
+            $vopList[$i]['id'] = $row['id'];
+            $vopList[$i]['name'] = $row['name'];
+            $i++;
         }
-
-       return $testList;
+        return $vopList;
     }
 
 
