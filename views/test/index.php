@@ -11,15 +11,14 @@
                     <tr><td>Тест начат</td><td><?=$datenach?></td></tr>
                     <tr><td>Осталось времени &nbsp;&nbsp;</td><td>
                             <span id="my_timer" style="font-weight: bold;">00:16:00</span>
-                    <?=$name?>
-                    <?=$_POST['cat2']?>
+                            <h2><?=$name?></h2>
                 </table>
                 <?foreach ($result as $test):
                     $i++;?>
 
                     <p><b><?=$i?>) <?=$test['vopros']?></b></p>
-
-                    <? foreach ($test['otvet'] as $itemTest):?>
+                    <?=Test::loadVopros($test['id'])?>
+                    <?foreach ($test['otvet'] as $itemTest):?>
                     <p><input type="radio" id="vop<?=$test['id']?>" name="vop<?=$test['id']?>" value="<?=$itemTest['prav']?>"><?=$itemTest['otvet']?></p>
                     <?endforeach;?>
 
@@ -32,9 +31,8 @@
                 <tr><td>№</td><td>Ответ</td></tr>
                 <form action="end" method="post">
                     <input type="hidden" name="vremproh" id="my_timer2">
-                    <input type="text" name='cat' id="catend" value='<?=$_POST['cat']?>'>
-                    <input type="hidden" name='name' id="nameend" value='<?=$name?>'>
-                    <?=$cat2?>
+                    <input type="hidden" name='cat' id="catend" value='<?=$_POST['cat']?>'>
+                    <input type="hidden" name='name' id="nameend" value='<?=$_POST['name']?>'>
                     <?for ($x=0; $x++<30;){?>
                         <tr><td>
                                 <?=$x?>
@@ -55,7 +53,7 @@
                     <tr>
                         <td rows=2>
                             Осталось попыток для исправлений - <span id='kolispr'>3</span>
-                            <input type="hidden" name='gruupa' id="catend" value='<?=$vgruppa['id']?>'>
+                            <input type="hidden" name='gruupa' id="catend" value='<?=$gruupa['id']?>'>
 
                             <input class="btn btn-primary btn-lg" type="button" id="reversotvb" onclick="reversotv()" value='Исправить'>
                             <input class="btn btn-primary btn-lg" type="submit" name="theendtest" value='Отправить результат'>
@@ -84,7 +82,7 @@
                 <? endforeach;?>
             </select>
             <label for="inputEmail">Выберите напрвление</label>
-           
+
             <select class="form-control" name="cat2" id="cat2">
                 <option></option>
                 <? foreach ($litlecat as $itemlitlecat):?>

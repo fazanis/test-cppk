@@ -75,7 +75,7 @@ function addotvet(){
 
 function reversotv(){
 	ispr=$('#ispr').val()-1;
-	alert(ispr);
+
 	$('#ispr').val(ispr);
 	$('#kolispr').text(ispr);
 	if (ispr<=0){

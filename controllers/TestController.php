@@ -34,7 +34,9 @@ class TestController extends SiteController
             if($errors == false){
                 $title = "Начало тестирования";
                 $result = Test::loadTest($cat,$yaz);
+                //$var = Test::loadVopros();
                 $datenach = Test::getDateTest();
+
                 //Test::loadVopros(1);
 
             }
