@@ -50,7 +50,7 @@ class TestController extends SiteController
         $gruupa = $_POST['gruupa'];
         $cat = $_POST['cat'];
         for ($i = 1; $i<=30; $i++){
-            echo $otvr = $_POST['otvr1'];
+            echo $otvr1 = $_POST['otvr1'];
         }
 
         require_once(ROOT . '/views/test/end_test.php');

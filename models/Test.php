@@ -103,7 +103,7 @@ class Test
 
     }
 
-<<<<<<< HEAD
+
     public static function getDateTest()
     {
         $_monthsList = array(
@@ -124,8 +124,6 @@ class Test
     {
 
     }
-=======
 
->>>>>>> origin/master
 
 }
