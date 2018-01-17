@@ -7,7 +7,7 @@
         <div id='vopros' >
             <? if($result):?>
                 <?$i=0;?>
-                <script type="text/javascript">
+                
 
         <? if($result):
             $i=0;?>
@@ -19,7 +19,7 @@
             <?endforeach;?>
 
 
-                </script>
+
                 <table class="table">
                     <tr><td>Тест начат</td><td><?=$datenach?></td></tr>
                     <tr><td>Осталось времени &nbsp;&nbsp;</td><td>
