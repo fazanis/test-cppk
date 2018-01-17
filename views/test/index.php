@@ -5,21 +5,8 @@
     <div class="container">
 
         <div id='vopros' >
-            <? if($result):?>
-                <?$i=0;?>
-                
-
         <? if($result):
             $i=0;?>
-            <?foreach ($result as $test):
-                $i++;?>
-                <p><b><?=$i?>) <?=$test['vopros']?></b></p>
-            <? foreach ($test['otvet'] as $itemTest):?>
-            <p><input type="radio" id="vop<?=$test['id']?>" name="vop<?=$test['id']?>" value="<?=$test['id']?>"><?=$itemTest['otvet']?></p>
-            <?endforeach;?>
-
-
-
                 <table class="table">
                     <tr><td>Тест начат</td><td><?=$datenach?></td></tr>
                     <tr><td>Осталось времени &nbsp;&nbsp;</td><td>
