@@ -10,12 +10,12 @@
             <a class="navbar-brand" href="#">«Центр переподготовки, повышения квалификации кадров» Павлодар</a>
         </div>
         <div class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" role="form" method="post">
+            <form class="navbar-form navbar-right" role="form" method="post" action="login/">
                 <div class="form-group">
                     <input type="text" name="login" placeholder="Email" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="parol" placeholder="Password" class="form-control">
+                    <input type="password" name="password" placeholder="Password" class="form-control">
                 </div>
                 <input type="submit" name='log' class="btn btn-success" value="Войти">
             </form>
