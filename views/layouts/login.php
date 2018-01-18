@@ -7,9 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">«Центр переподготовки, повышения квалификации кадров» Павлодар</a>
+            <a class="navbar-brand" href="/">«Центр переподготовки, повышения квалификации кадров» Павлодар</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <class="navbar-collapse collapse">
+        <?if($userId):?>
+            <a href = "/admin/">Перейти в админ панель</a> <a href="/logout/">Выход</a>
+        <?else:?>
             <form class="navbar-form navbar-right" role="form" method="post" action="login/">
                 <div class="form-group">
                     <input type="text" name="login" placeholder="Email" class="form-control">
@@ -19,6 +22,7 @@
                 </div>
                 <input type="submit" name='log' class="btn btn-success" value="Войти">
             </form>
+        <?endif;?>
         </div><!--/.navbar-collapse -->
     </div>
 </div>
