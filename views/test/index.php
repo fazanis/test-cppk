@@ -97,9 +97,10 @@
                 <option value="kz">Казахский</option>
                 <option value="ru">Русский</option>
             </select>
+            <input type="hidden" name="vremproh" id="my_timer2">
             <input type="submit" name="gotest" class="btn btn-primary btn-lg" value="Далее">
         </form>
-            <input type="hidden" name="vremproh" id="my_timer2">
+
         <?endif;?>
 
         <?php require_once (ROOT."/views/layouts/footer.php");?>

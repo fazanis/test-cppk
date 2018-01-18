@@ -5,6 +5,9 @@ return array(
     'test' => 'test/index', // actionIndex в CatalogController
     'end' => 'test/endtest', // actionIndex в CatalogController
     'load' => 'test/AjaxCat', // actionIndex в CatalogController
+
+    //Admin:
+    'admin' =>'admin/index',  //actionIndex в AdminController
     // Категория товаров:
     'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2', // actionCategory в CatalogController   
     'category/([0-9]+)' => 'catalog/category/$1', // actionCategory в CatalogController

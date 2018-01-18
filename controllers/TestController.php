@@ -33,7 +33,7 @@ class TestController extends SiteController
 
             if($errors == false){
                 $title = "Начало тестирования";
-                $result = Test::loadTest($cat,$yaz);
+                $result = Test::loadTest($cat2,$yaz);
                 //$var = Test::loadVopros();
                 $datenach = Test::getDateTest();
 
@@ -49,15 +49,17 @@ class TestController extends SiteController
 
     public function actionEndtest(){
         $name = $_POST['name'];
-        $cat = $_POST['cat'];
+        $cat = $_POST['cat2'];
         $obshhid = $_POST['obshhid'];
-        $gruupa = $_POST['gruupa'];
+        $vremproh = $_POST['vremproh'];
+        $gruupa = Test::getGroup();
 
         for ($i = 1; $i<=30; $i++){
             $otv[]= $_POST['otvr'.$i];
         }
         //$otv = $otv[];
-        $m = Test::saveTest($name,$obshhid,$gruupa,$cat,$otv);
+
+        $m = Test::saveTest($name,$obshhid,$gruupa,$cat,$otv,$vremproh);
         $title = 'Тест завершен';
         require_once(ROOT . '/views/test/end_test.php');
         return true;

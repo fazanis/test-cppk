@@ -120,22 +120,22 @@ class Test
        return $data.' '.$h.':'.$m.':'.$s;
     }
 
-    public static function saveTest($name,$obshhid,$gruupa,$cat,$otv)
+    public static function saveTest($name,$obshhid,$gruupa,$cat,$otv,$vremproh)
     {
         $db = Db::getConnection();
         $i = 0;
 
         foreach ($otv as $otvet) {
             $i++;
+            if($otvet==''){$otvet = 0;}
             $endotvet[] = $otvet;
             $otvper[] = 'otv'.$i;
         }
-        echo $endotvet_s = "0";//implode(',',$endotvet);
-        echo $otvetper_s = 'otv1';//implode(',',$otvper);
+        $endotvet_s = implode(',',$endotvet);
+        $otvetper_s = implode(',',$otvper);
 
-
-        echo $sql = 'INSERT INTO test_otvet (`cat`,`fio`,"'.$otvetper_s.'") VALUES("'.$cat.'","'.$name.'","'.$endotvet_s.'")';
-        //$sql = "INSERT INTO test_otvet (fio) VALUES('".$name."')";
+       $zatrat_vrem="00:".date('i:s',strtotime('00:15:00')-strtotime($vremproh));
+       $sql = 'INSERT INTO test_otvet (`gruupa`,`cat`,`fio`,zatrat_vrem,data_prov,'.$otvetper_s.') VALUES("'.$gruupa.'","'.$cat.'","'.$name.'","'.$zatrat_vrem.'","'.date('d.m.Y').'",'.$endotvet_s.')';
         $result = $db->prepare($sql);
         return $result->execute();
     }
@@ -158,5 +158,17 @@ class Test
         return $vopList;
     }
 
+    public static function getGroup()
+    {
+        $db = Db::getConnection();
+
+        $select = "SELECT * FROM test_gruppa WHERE podkl=1";
+        $result = $db->prepare($select);
+        $result ->execute();
+        $row = $result->fetch();
+
+        return $row['id'];
+
+    }
 
 }
