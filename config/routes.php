@@ -8,8 +8,8 @@ return array(
 
     //Admin:
     'admin' =>'admin/index',  //actionIndex в AdminController
-    'login' => 'admin/login', //actionLogin в AdminController
-    'logout' => 'admin/logout', //actionLogin в AdminController
+    'login' => 'user/login', //actionLogin в AdminController
+    'logout' => 'user/logout', //actionLogin в AdminController
     // Категория товаров:
     'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2', // actionCategory в CatalogController   
     'category/([0-9]+)' => 'catalog/category/$1', // actionCategory в CatalogController
