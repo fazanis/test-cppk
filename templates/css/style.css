@@ -21,9 +21,9 @@ a, a:visited {
 	color:#54a6de;
 }
 
-a:hover{
+/*a:hover{
 	text-decoration:underline;
-}
+}*/
 
 section, footer{
 	display: block;

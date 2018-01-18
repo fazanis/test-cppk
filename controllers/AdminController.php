@@ -17,4 +17,11 @@ class AdminController
         require_once (ROOT."/views/admin/index.php");
         return true;
     }
+
+    public function actionCat()
+    {
+        $catList = Admin::getCatList();
+        require_once (ROOT."/views/admin/cat.php");
+        return true;
+    }
 }

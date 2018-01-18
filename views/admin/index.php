@@ -3,6 +3,6 @@
 <?php require_once (ROOT."/views/layouts/login.php");?>
 <div class="container">
 Приветствуем Вас, <?=$user['login'];?><br>
-    <a class="btn btn-primary btn-lg" id='onof' role="button" href="#">Включить</a>
+    <a class="btn btn-primary btn-lg" id='onof' role="button" href="/admin/cat">Катигории тестов</a>
 </div>
 <?php require_once (ROOT."/views/layouts/footer_admin.php");?>

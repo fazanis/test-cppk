@@ -7,9 +7,12 @@ return array(
     'load' => 'test/AjaxCat', // actionIndex в CatalogController
 
     //Admin:
+    '/admin/cat/add' => 'admin/addcat',
+    'admin/cat' => 'admin/cat',
     'admin' =>'admin/index',  //actionIndex в AdminController
     'login' => 'user/login', //actionLogin в AdminController
     'logout' => 'user/logout', //actionLogin в AdminController
+
     // Категория товаров:
     'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2', // actionCategory в CatalogController   
     'category/([0-9]+)' => 'catalog/category/$1', // actionCategory в CatalogController
