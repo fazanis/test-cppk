@@ -58,6 +58,7 @@ class TestController extends SiteController
         }
         //$otv = $otv[];
         $m = Test::saveTest($name,$obshhid,$gruupa,$cat,$otv);
+        $title = 'Тест завершен';
         require_once(ROOT . '/views/test/end_test.php');
         return true;
     }
@@ -70,7 +71,7 @@ class TestController extends SiteController
 
         foreach ($litlecat as $itlitlecat)
         {
-            echo '<option value="'.$itlitlecat['name'].'">'.$itlitlecat['name'].'</option>';
+            echo '<option value="'.$itlitlecat['id'].'">'.$itlitlecat['name'].'</option>';
         }
 
         return true;

@@ -19,7 +19,7 @@
                     <p><b><?=$i?>) <?=$test['vopros']?></b></p>
                     
                     <?foreach ($test['otvet'] as $itemTest):?>
-                    <p><input type="radio" id="vop<?=$test['id']?>" name="vop<?=$test['id']?>" value="<?=$itemTest['prav']?>"><?=$itemTest['otvet']?></p>
+                    <p><input type="radio" id="vop<?=$i?>" name="vop<?=$i?>" value="<?=$itemTest['prav']?>"><?=$itemTest['otvet']?></p>
                     <?endforeach;?>
 
                 <?endforeach;?>

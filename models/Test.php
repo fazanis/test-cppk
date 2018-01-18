@@ -130,11 +130,11 @@ class Test
             $endotvet[] = $otvet;
             $otvper[] = 'otv'.$i;
         }
-        $endotvet_s = implode(',',$endotvet);
-        $otvetper_s = implode(',',$otvper);
+        echo $endotvet_s = "0";//implode(',',$endotvet);
+        echo $otvetper_s = 'otv1';//implode(',',$otvper);
 
 
-        $sql = 'INSERT INTO test_otvet (`cat`,`fio`) VALUES("'.$cat.'","'.$name.'")';
+        echo $sql = 'INSERT INTO test_otvet (`cat`,`fio`,"'.$otvetper_s.'") VALUES("'.$cat.'","'.$name.'","'.$endotvet_s.'")';
         //$sql = "INSERT INTO test_otvet (fio) VALUES('".$name."')";
         $result = $db->prepare($sql);
         return $result->execute();
