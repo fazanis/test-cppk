@@ -2,13 +2,21 @@
 
 return array(
      // Test:
-    'test' => 'test/index', // actionIndex в CatalogController
+     // actionIndex в CatalogController
     'end' => 'test/endtest', // actionIndex в CatalogController
     'load' => 'test/AjaxCat', // actionIndex в CatalogController
 
     //Admin:
-    'admin/cat/add' => 'admin/addcat',
-    'admin/cat' => 'admin/cat',
+    'admin/cat/add/([0-9]+)' => 'adminCat/editcat/$1',
+    'admin/cat/delete/([0-9]+)' => 'adminCat/deletecat/$1',
+    'admin/cat/add' => 'adminCat/addcat',
+    'admin/cat' => 'adminCat/cat',
+
+    'admin/test/edit/([0-9]+)' => 'adminTest/EditTestOne/$1',
+    'admin/test/edit' => 'adminTest/EditTest',
+    'admin/test' => 'adminTest/index',
+
+    'test' => 'test/index',
     'admin' =>'admin/index',  //actionIndex в AdminController
     'login' => 'user/login', //actionLogin в AdminController
     'logout' => 'user/logout', //actionLogin в AdminController

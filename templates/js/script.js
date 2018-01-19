@@ -99,3 +99,10 @@ $(function(){
 
 });
 
+function addpole() {
+    var $i = $("i").text();
+    alert($i);
+    $('#eshevar').html(my_timer);
+
+
+}

@@ -88,4 +88,12 @@ class User
             return $result->fetch();
         }
     }
+
+    public static function checkLogged()
+    {
+        if(isset($_SESSION['user'])){
+            return $_SESSION['user'];
+        }
+        header("Location: /login");
+    }
 }
