@@ -3,9 +3,9 @@
 <br>
 <a class="btn btn-primary btn-lg" id='onof' role="button" href="/admin/cat/add">Добавить категорию</a><br><br>
 <table class="table">
-    <tr><td>Название</td><td>Раздел</td><td>Редактирование</td></tr>
+    <tr><td><b>Название</b></td><td><b>Раздел</b></td><td><b>Редактирование</b></td></tr>
 <?foreach ($catList as $cat):?>
-    <tr><td><?=$cat['name']?></td><td><?=$cat['id_cat']?></td><td><?=$cat['id']?></td></tr>
+    <tr><td><?=$cat['name']?></td><td><?=$cat['namecat']?></td><td><?=$cat['idpodcat']?></td></tr>
 <?endforeach;?>
 </table>
 

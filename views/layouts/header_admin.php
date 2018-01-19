@@ -10,12 +10,13 @@
     <title><?=$title?> «Центр переподготовки, повышения квалификации кадров» Павлодар</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../templates/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../templates/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../templates/css/style.css" rel="stylesheet">
+    <link href="../../templates/css/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="../templates/js/script.js"></script>
+    <script src="../../templates/js/script.js"></script>
 
     <![endif]-->
 </head>
+
