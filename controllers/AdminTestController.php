@@ -22,17 +22,21 @@ class AdminTestController extends AdminBase
         self::checkAdmin();
         $cats = Admin::getCatAll();
 
+        if (isset($_SESSION['cat']) and isset($_SESSION['yaz'])){
+            $cat = $_SESSION['cat'];
+            $yaz = $_SESSION['yaz'];
+            $test = Admin::loadTest($cat,$yaz);
+        }
 
         if (isset($_POST['submit'])){
             $cat = $_POST['cat2'];
             $yaz = $_POST['yaz'];
-
-            $test = Admin::loadTest($cat,$yaz);
-
+            $_SESSION['cat'] = $cat;
+            $_SESSION['yaz'] = $yaz;
+                $test = Admin::loadTest($cat,$yaz);
         }
 
-
-        require_once (ROOT."/views/admin/addtest.php");
+        require_once (ROOT."/views/admin/edittest.php");
         return true;
     }
 
@@ -44,7 +48,44 @@ class AdminTestController extends AdminBase
         $vop = Admin::GetTestOne($id);
         $varotv = Admin::GetVarOne($id);
 
+        if(isset($_POST['submit'])){
+            $prav=array_shift($_POST['prav']);
+            $var =$_POST['var'];
+            $idvar = $_POST['idvar'];
+            $oldvar = array_combine($idvar,$var);
+            $vopros = $_POST['vopros'];
+
+            if(isset($_POST['var2'])){
+
+            $var2 = $_POST['var2'];
+                Admin::EditOldVarOtv($id,$vopros,$oldvar,$prav,$var2);
+            }else{
+                Admin::EditOldVarOtv($id, $vopros, $oldvar, $prav);
+
+            }
+
+
+
+            header("Location: test/edit");
+        }
         require_once (ROOT."/views/admin/editvop.php");
+        return true;
+    }
+
+    public function actionAjaxPole(){
+
+        $id = $_POST['code'];
+        Admin::dellPole($id);
+    }
+
+    public function actionAddTest()
+    {
+
+        self::checkAdmin();
+        $cats = Admin::getCatAll();
+
+
+        require_once (ROOT."/views/admin/addtest.php");
         return true;
     }
 

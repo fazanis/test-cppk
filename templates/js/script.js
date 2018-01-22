@@ -100,9 +100,33 @@ $(function(){
 });
 
 function addpole() {
-    var $i = $("i").text();
-    alert($i);
-    $('#eshevar').html(my_timer);
+    var $i = $("#i").val();
+    $i = parseInt($i);
+    $s = $i+1;
+    $('#i').val($s);
+
+    $('#eshevar').append('<input type="radio" name="prav2[]" value="'+$s+'"><input class="form-control" type="text" name="var2[]" value="'+$s+'">' +
+        '<a href=""><i class="glyphicon glyphicon-minus" aria-hidden="true">' +
+        '</i></a>');
 
 
+}
+
+function delpole($id) {
+
+    var code = $id;
+    if (confirm("Вы действительно хотите удалить поле и его содержимое")) {
+        $.post("/delpole/", {code}, function (data) {
+            location.reload();
+
+        });
+    } else {
+        location.reload();
+    }
+
+}
+
+function addtest() {
+    var vopros = $('#vopros').val();
+    alert(vopros);
 }

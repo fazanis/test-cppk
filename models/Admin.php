@@ -125,6 +125,7 @@ class Admin
 
         while ($row = $result->fetch()) {
             $testList[$i]['id'] = $row['id'];
+            $testList[$i]['cat'] = $row['cat'];
             $testList[$i]['vopros'] = $row['vopros'];
             for ($k=0; $k<=3; $k++) {
                 $testList[$i]['otvet'] = Test::loadVopros($testList[$i]['id']);
@@ -181,5 +182,59 @@ class Admin
             $i++;
          }
          return $list;
+     }
+
+     public static function EditOldVarOtv($idvop,$vopros,$idarr,$prav,$var2=NULL){
+        $db = Db::getConnection();
+        foreach ($idarr as $key =>$value){
+          $select ="UPDATE test_var_otv SET otvet = :value, prav = 0 WHERE id = :id";
+            $result = $db->prepare($select);
+            $result->bindParam(":id",$key,PDO::PARAM_INT);
+            $result->bindParam(':value',$value,PDO::PARAM_STR);
+            $result->execute();
+         }
+         if(isset($var2)){
+         foreach ($var2 as $val) {
+           $sql = "INSERT INTO test_var_otv (id_vop,otvet, prav) VALUE (:id_vop,:otvet,0)";
+           $rez = $db->prepare($sql);
+           $rez->bindParam(':id_vop', $idvop, PDO::PARAM_INT);
+           $rez->bindParam(':otvet', $val, PDO::PARAM_STR);
+           $rez->execute();
+
+         }}
+         $select2 ="UPDATE test_var_otv SET prav = 1 WHERE id = :id";
+         $result2 = $db->prepare($select2);
+         $result2->bindParam(":id",$prav,PDO::PARAM_INT);
+         $result2->execute();
+
+         $select3 ="UPDATE test_vopros SET vopros =:vopros  WHERE id = :id";
+         $result3 = $db->prepare($select3);
+         $result3->bindParam(":id",$idvop,PDO::PARAM_INT);
+         $result3->bindParam(":vopros",$vopros,PDO::PARAM_STR);
+         $result3->execute();
+
+
+     }
+
+     public static function addNewVop($otvet,$id_vop,$prav)
+     {
+         $db = Db::getConnection();
+         /*$sql = "INSERT INTO test_var_otv (otvet,id_vop,prav) AS (:otvet,:id_vop,:prav)";
+         $rez = $db->prepare($sql);
+         $rez->bindParam(':otvet',$otvet, PDO::PARAM_STR);
+         $rez->bindParam(':id_vop',$id_vop, PDO::PARAM_INT);
+         $rez->bindParam(':prav',$prav, PDO::PARAM_INT);
+         $rez->execute();*/
+         //return true;
+         echo $otvet.' '.$id_vop.' '.$prav.'<br>';
+     }
+
+     public static function dellPole($id){
+         $db = Db::getConnection();
+         $select = "DELETE FROM test_var_otv WHERE id=:id";
+         $result = $db->prepare($select);
+         $result ->bindParam(':id',$id,PDO::PARAM_INT);
+         $result->execute();
+
      }
 }

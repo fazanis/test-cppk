@@ -5,8 +5,10 @@ return array(
      // actionIndex в CatalogController
     'end' => 'test/endtest', // actionIndex в CatalogController
     'load' => 'test/AjaxCat', // actionIndex в CatalogController
-
+    'delpole' => 'adminTest/AjaxPole',
+    'addtest' => 'adminTest/AjaxAddTest',
     //Admin:
+
     'admin/cat/add/([0-9]+)' => 'adminCat/editcat/$1',
     'admin/cat/delete/([0-9]+)' => 'adminCat/deletecat/$1',
     'admin/cat/add' => 'adminCat/addcat',
@@ -14,6 +16,7 @@ return array(
 
     'admin/test/edit/([0-9]+)' => 'adminTest/EditTestOne/$1',
     'admin/test/edit' => 'adminTest/EditTest',
+    'admin/test/add' => 'adminTest/AddTest',
     'admin/test' => 'adminTest/index',
 
     'test' => 'test/index',

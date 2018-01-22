@@ -39,9 +39,10 @@
         <a href="/admin/test/edit/<?=$ItemTest['id']?>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></a> <?=$i?>)
         <?=$ItemTest['vopros']?><br>
         <?foreach ($ItemTest['otvet'] as $itemVopros):?>
-            <p><input type="radio" id="vop<?=$i?>" name="vop<?=$i?>" ><?=$itemVopros['otvet']?> <?if($itemVopros['prav']==1){echo "<span style='color:green;'>Правильный</span>";}?></p>
+            <p><?=$itemVopros['otvet']?> <?if($itemVopros['prav']==1){echo "<span style='color:green;'>Правильный</span>";}?></p>
         <?endforeach;?><br>
     <?endforeach;?>
 <?endif;?>
+
 
 <?php require_once (ROOT."/views/layouts/footer_admin.php");?>

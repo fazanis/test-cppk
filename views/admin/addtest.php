@@ -29,22 +29,14 @@
         <option value="kz">Казахский</option>
         <option value="ru">Русский</option>
     </select><br>
+
+    <label>Вопрос</label>
+    <textarea class="form-control" name="vopros" id="vopros"></textarea>
+    <input class="form-control" name="otv[]" id="otv[]">
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="submit" value="Загрузить тесты">
+        <input type="button" class="btn btn-primary" name="submit" value="Записать тест" onclick="addtest()">
     </div>
 </form>
 
-<?if(isset($test)):$i=0;?>
-    <?foreach ($test as $ItemTest):$i++;?>
-        <a href="/admin/test/edit/<?=$ItemTest['id']?>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></a> <?=$i?>)
-        <?=$ItemTest['vopros']?><br>
-        <?foreach ($ItemTest['otvet'] as $itemVopros):?>
-            <p><input type="radio" id="vop<?=$i?>" name="vop<?=$i?>" ><?=$itemVopros['otvet']?> <?if($itemVopros['prav']==1){echo "<span style='color:green;'>Правильный</span>";}?></p>
-        <?endforeach;?><br>
-    <?endforeach;?>
-<?endif;?>
 
-<?if (isset($vop)):?>
-    <?=$vop['vopros']?>
-<?endif;?>
 <?php require_once (ROOT."/views/layouts/footer_admin.php");?>
