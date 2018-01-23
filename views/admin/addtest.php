@@ -31,9 +31,14 @@
     </select><br>
 
     <label>Вопрос</label>
-    <textarea class="form-control" name="vopros" id="vopros"></textarea>
+    <textarea class="form-control" name="vopros" id="vopros"></textarea><br>
     <input class="form-control" name="otv[]" id="otv1">
+    <div id="eshevar"></div>
+        <a href="#" onclick="addpoleadtest();">
+            <i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+        </a>
     <input class="form-control" name="otv[]" id="otv2">
+    <br><br><br><br>
     <div class="form-group">
         <input type="button" class="btn btn-primary" name="submit" value="Записать тест" onclick="addtest()">
     </div>

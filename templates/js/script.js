@@ -111,6 +111,18 @@ function addpole() {
 
 
 }
+function addpoleadtest() {
+    var $i = $("#i").val();
+    $i = parseInt($i);
+    $s = $i+1;
+    $('#i').val($s);
+
+    $('#eshevar').append('<input type="radio" name="prav2[]" value="'+$s+'"><input class="form-control" type="text" name="var[]" value="'+$s+'">' +
+        '<a href=""><i class="glyphicon glyphicon-minus" aria-hidden="true">' +
+        '</i></a>');
+
+
+}
 
 function delpole($id) {
 
@@ -138,7 +150,7 @@ function addtest() {
     vopros = $('#vopros').val();
     $.post("/addtest/", {cat,yaz,vopros,t}, function (data) {
         alert('Вопрос успешно добавлен');
-        
+        $('#vopros').val('');
         //$('#rez').html(data);
 
         //location.reload();
