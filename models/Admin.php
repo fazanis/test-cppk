@@ -237,4 +237,51 @@ class Admin
          $result->execute();
 
      }
+     public static function SaveTest($cat,$yaz,$vopros,$text)
+     {
+
+         $db = Db::getConnection();
+         $sql = "INSERT INTO test_vopros (cat,vopros,yaz) VALUE (:cat,:vopros,:yaz)";
+         $rez = $db->prepare($sql);
+         $rez->bindParam(':cat', $cat, PDO::PARAM_INT);
+         $rez->bindParam(':vopros', $vopros, PDO::PARAM_STR);
+         $rez->bindParam(':yaz', $yaz, PDO::PARAM_STR);
+         $rez->execute();
+
+         $id = Admin::endid();
+         Admin::SaveVarOtv($id, $text);
+
+     }
+
+     public static function endid(){
+
+         $db = Db::getConnection();
+         $sql = "SELECT id FROM test_vopros ORDER BY id DESC";
+         $rez = $db->prepare($sql);
+         $rez->execute();
+         $row = $rez->fetch();
+         return $row['id'];
+     }
+
+    public static function SaveVarOtv($id,$text)
+    {
+
+        $db = Db::getConnection();
+
+        $i=1;
+        foreach ($text as $t) {
+            $i++;
+            $new_arr = array_diff($t, array(0, null));
+            for ($k=1;$k<=count($new_arr);$k++) {
+                $sql = "INSERT INTO test_var_otv (id_vop,otvet,prav) VALUE (:id,:otvet,0)";
+                $rez = $db->prepare($sql);
+                $rez->bindParam(':id', $id, PDO::PARAM_STR);
+                $rez->bindParam(':otvet', $new_arr[$k], PDO::PARAM_STR);
+
+                $rez->execute();
+            }
+
+        }
+
+    }
 }

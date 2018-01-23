@@ -83,10 +83,20 @@ class AdminTestController extends AdminBase
 
         self::checkAdmin();
         $cats = Admin::getCatAll();
+        //echo Admin::SaveTest('1','2','3','4');
 
 
         require_once (ROOT."/views/admin/addtest.php");
         return true;
     }
 
+    public function actionAjaxAddTest()
+    {
+        $t = $_POST['t'];
+        $cat = $_POST['cat'];
+        $yaz = $_POST['yaz'];
+        $vopros = $_POST['vopros'];
+        Admin::SaveTest($cat,$yaz,$vopros,$t);
+
+    }
 }

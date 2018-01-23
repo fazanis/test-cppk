@@ -127,6 +127,21 @@ function delpole($id) {
 }
 
 function addtest() {
-    var vopros = $('#vopros').val();
-    alert(vopros);
+    var mas = [];
+    for ($i = 0; $i <= 30; $i++) {
+        mas[$i] = $('#otv' + $i).val();
+    }
+    t = [mas];
+
+    cat = $('#cat2').val();
+    yaz = $('#yaz').val();
+    vopros = $('#vopros').val();
+    $.post("/addtest/", {cat,yaz,vopros,t}, function (data) {
+        alert('Вопрос успешно добавлен');
+        
+        //$('#rez').html(data);
+
+        //location.reload();
+
+    });
 }

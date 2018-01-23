@@ -24,7 +24,7 @@
         <? endforeach;?>
     </select>
     <label for="inputEmail">Выберите язык</label>
-    <select class="form-control" name="yaz">
+    <select class="form-control" name="yaz" id="yaz">
         <option></option>
         <option value="kz">Казахский</option>
         <option value="ru">Русский</option>
@@ -32,11 +32,11 @@
 
     <label>Вопрос</label>
     <textarea class="form-control" name="vopros" id="vopros"></textarea>
-    <input class="form-control" name="otv[]" id="otv[]">
+    <input class="form-control" name="otv[]" id="otv1">
+    <input class="form-control" name="otv[]" id="otv2">
     <div class="form-group">
         <input type="button" class="btn btn-primary" name="submit" value="Записать тест" onclick="addtest()">
     </div>
 </form>
-
-
+<div id="rez"></div>
 <?php require_once (ROOT."/views/layouts/footer_admin.php");?>
