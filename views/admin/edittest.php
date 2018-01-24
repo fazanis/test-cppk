@@ -36,7 +36,12 @@
 
 <?if(isset($test)):$i=0;?>
     <?foreach ($test as $ItemTest):$i++;?>
-        <a href="/admin/test/edit/<?=$ItemTest['id']?>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></a> <?=$i?>)
+        <a href="/admin/test/edit/<?=$ItemTest['id']?>">
+            <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+        </a>
+        <a href="/admin/test/dell/<?=$ItemTest['id']?>">
+            <i class="glyphicon glyphicon-remove-sign" aria-hidden="true"></i>
+        </a> <?=$i?>)
         <?=$ItemTest['vopros']?><br>
         <?foreach ($ItemTest['otvet'] as $itemVopros):?>
             <p><?=$itemVopros['otvet']?> <?if($itemVopros['prav']==1){echo "<span style='color:green;'>Правильный</span>";}?></p>

@@ -7,6 +7,7 @@ class TestController extends SiteController
         $name = "";
         $cat = '';
         $result = false;
+        $groopa = Test::getGroup();
         if(isset($_POST['gotest'])){
             $name = $_POST['name'];
             $cat = $_POST['cat'];
@@ -33,6 +34,7 @@ class TestController extends SiteController
 
             if($errors == false){
                 $title = "Начало тестирования";
+                $cat2 = $_POST['cat2'];
                 $result = Test::loadTest($cat2,$yaz);
                 //$var = Test::loadVopros();
                 $datenach = Test::getDateTest();
@@ -49,7 +51,7 @@ class TestController extends SiteController
 
     public function actionEndtest(){
         $name = $_POST['name'];
-        $cat = $_POST['cat2'];
+        echo $cat = $_POST['cat2'];
         $obshhid = $_POST['obshhid'];
         $vremproh = $_POST['vremproh'];
         $gruupa = Test::getGroup();

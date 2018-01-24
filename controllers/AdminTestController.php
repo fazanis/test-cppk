@@ -11,7 +11,7 @@ class AdminTestController extends AdminBase
     public function actionIndex()
     {
         self::checkAdmin();
-
+        $title = "Работа с тестами";
         require_once (ROOT."/views/admin/test.php");
         return true;
     }
@@ -92,11 +92,28 @@ class AdminTestController extends AdminBase
 
     public function actionAjaxAddTest()
     {
+        self::checkAdmin();
         $t = $_POST['t'];
         $cat = $_POST['cat'];
         $yaz = $_POST['yaz'];
         $vopros = $_POST['vopros'];
-        Admin::SaveTest($cat,$yaz,$vopros,$t);
+        $prav = $_POST['prav'];
+        Admin::SaveTest($cat,$yaz,$vopros,$prav,$t);
+
+    }
+
+    public function actionDellTest($id)
+    {
+        self::checkAdmin();
+        Admin::DellTest($id);
+        header("Location: /admin/test/edit");
+    }
+
+    public function actionAjaxOnOf()
+    {
+        self::checkAdmin();
+        $id = $_POST['code'];
+        Admin::OnOf($id);
 
     }
 }

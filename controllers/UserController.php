@@ -45,7 +45,7 @@ class UserController
                 header("Location: /admin/");
             }
         }
-
+        $title = "Повторная авторизация";
         require_once (ROOT."/views/layouts/loginw.php");
         return true;
     }

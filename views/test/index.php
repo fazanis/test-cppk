@@ -6,8 +6,10 @@
 
         <div id='vopros' >
         <? if($result):
-            $i=0;?>
+            $i=0;
+        if($groopa!=''):?>
                 <table class="table">
+
                     <tr><td>Тест начат</td><td><?=$datenach?></td></tr>
                     <tr><td>Осталось времени &nbsp;&nbsp;</td><td>
                             <span id="my_timer" style="font-weight: bold;">00:16:00</span>
@@ -24,6 +26,10 @@
 
                 <?endforeach;?>
             <input type="button" name="add_otvet" onclick="addotvet();" value="Завершить тестирование">
+            <?else:?>
+            <h1>Отключено администратором</h1>
+            <?endif;?>
+
         </div>
         <?//результаты тестирования?>
         <div id="rezult">
@@ -31,7 +37,7 @@
                 <tr><td>№</td><td>Ответ</td></tr>
                 <form action="end" method="post">
                     <input type="hidden" name="vremproh" id="my_timer2">
-                    <input type="hidden" name='cat' id="catend" value='<?=$_POST['cat']?>'>
+                    <input type="hidden" name='cat2' id="catend" value='<?=$_POST['cat2']?>'>
                     <input type="hidden" name='name' id="nameend" value='<?=$_POST['name']?>'>
                     <?for ($x=0; $x++<30;){?>
                         <tr><td>
@@ -76,7 +82,6 @@
             <label for="inputEmail">Выберите тип организации </label>
             <select class="form-control" name="cat" id="cat">
                 <option></option>
-
                 <? foreach ($cat as $itemCat):?>
                     <option value="<?=$itemCat['id']?>"><?=$itemCat['name']?></option>
                 <? endforeach;?>

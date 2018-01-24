@@ -55,6 +55,18 @@ class Test
         return false;
     }
 
+    public static function Gruppa()
+    {
+        $db = Db::getConnection();
+        $select = "SELECT * FROM test_gruppa WHERE podkl=1";
+        $result = $db->prepare($select);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        $row = $result->fetch();
+
+        return $row['id'];
+    }
+
     public static function loadTest($cat,$yaz)
     {
 
@@ -165,9 +177,10 @@ class Test
         $select = "SELECT * FROM test_gruppa WHERE podkl=1";
         $result = $db->prepare($select);
         $result ->execute();
-        $row = $result->fetch();
-
+        $row = $result->fetch(PDO::FETCH_ASSOC);
         return $row['id'];
+
+
 
     }
 

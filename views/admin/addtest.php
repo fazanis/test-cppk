@@ -23,6 +23,7 @@
             <option value="<?=$itemlitlecat['id']?>"><?=$itemlitlecat['name']?></option>
         <? endforeach;?>
     </select>
+
     <label for="inputEmail">Выберите язык</label>
     <select class="form-control" name="yaz" id="yaz">
         <option></option>
@@ -32,13 +33,19 @@
 
     <label>Вопрос</label>
     <textarea class="form-control" name="vopros" id="vopros"></textarea><br>
+    <label class="control-label col-xs-1">
+        <input type="radio" name="prav" id="prav" value="1">
+    </label>
+
+    <div class="col-xs-11">
     <input class="form-control" name="otv[]" id="otv1">
+    </div>
     <div id="eshevar"></div>
-        <a href="#" onclick="addpoleadtest();">
-            <i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+        <a href="#" onclick="addpoleadtest();" class="">
+            <i class="glyphicon glyphicon-plus-sign btn" aria-hidden="true"></i>
         </a>
-    <input class="form-control" name="otv[]" id="otv2">
     <br><br><br><br>
+    <input type="hidden" id="i" value="1">
     <div class="form-group">
         <input type="button" class="btn btn-primary" name="submit" value="Записать тест" onclick="addtest()">
     </div>

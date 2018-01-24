@@ -163,7 +163,7 @@ class Admin
         $result = $db->prepare($select);
         $result->bindParam(':id',$id,PDO::PARAM_INT);
         $result->execute();
-        return $result->fetch();
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
      public static function GetVarOne($id)
      {
@@ -237,7 +237,7 @@ class Admin
          $result->execute();
 
      }
-     public static function SaveTest($cat,$yaz,$vopros,$text)
+     public static function SaveTest($cat,$yaz,$vopros,$prav,$text)
      {
 
          $db = Db::getConnection();
@@ -249,7 +249,7 @@ class Admin
          $rez->execute();
 
          $id = Admin::endid();
-         Admin::SaveVarOtv($id, $text);
+         Admin::SaveVarOtv($id,$prav,$text);
 
      }
 
@@ -263,7 +263,7 @@ class Admin
          return $row['id'];
      }
 
-    public static function SaveVarOtv($id,$text)
+    public static function SaveVarOtv($id,$prav,$text)
     {
 
         $db = Db::getConnection();
@@ -273,15 +273,127 @@ class Admin
             $i++;
             $new_arr = array_diff($t, array(0, null));
             for ($k=1;$k<=count($new_arr);$k++) {
-                $sql = "INSERT INTO test_var_otv (id_vop,otvet,prav) VALUE (:id,:otvet,0)";
+                if($prav == $k){$p = 1;
+                    }else{$p = 0;}
+                $sql = "INSERT INTO test_var_otv (id_vop,otvet,prav) VALUE (:id,:otvet,:p)";
                 $rez = $db->prepare($sql);
                 $rez->bindParam(':id', $id, PDO::PARAM_STR);
                 $rez->bindParam(':otvet', $new_arr[$k], PDO::PARAM_STR);
+                $rez->bindParam(':p', $p, PDO::PARAM_INT);
 
                 $rez->execute();
             }
 
         }
 
+    }
+
+    public static function DellTest($id)
+    {
+        $db = Db::getConnection();
+        $sql = "DELETE FROM test_vopros WHERE id=:id";
+        $rez = $db->prepare($sql);
+        $rez->bindParam(':id', $id, PDO::PARAM_STR);
+        $rez->execute();
+        Admin::DellVar($id);
+    }
+
+    public static function DellVar($id)
+    {
+        $db = Db::getConnection();
+
+         $sql = "DELETE FROM test_var_otv WHERE id_vop=:id";
+                $rez = $db->prepare($sql);
+                $rez->bindParam(':id', $id, PDO::PARAM_STR);
+                $rez->execute();
+
+    }
+
+    public static function SelectAllGorup()
+    {
+        $db = Db::getConnection();
+
+        $sql = "SELECT * FROM test_gruppa";
+        $rez = $db->prepare($sql);
+        $rez->execute();
+        $i=0;
+        while ($row = $rez->fetch()){
+            $list[$i]['id']= $row['id'];
+            $list[$i]['name']= $row['name'];
+            $list[$i]['date']= $row['date'];
+            $list[$i]['podkl']= $row['podkl'];
+
+           // $list= $row;
+            $i++;
+        }
+
+        return $list;
+    }
+
+    public static function OnOf($id)
+    {
+        $db = Db::getConnection();
+        $sql = "SELECT * FROM test_gruppa WHERE id = :id";
+        $rez = $db->prepare($sql);
+        $rez->bindParam(':id', $id, PDO::PARAM_INT);
+        $rez->execute();
+        $row = $rez->fetch();
+        if ($row['podkl']==1){
+            $sql2 = "UPDATE test_gruppa SET podkl=0 WHERE id = :id";
+            $rez2 = $db->prepare($sql2);
+            $rez2->bindParam(':id', $id, PDO::PARAM_INT);
+            $rez2->execute();
+        }
+        if ($row['podkl']==0){
+            $sql3 = "UPDATE test_gruppa SET podkl=0";
+            $rez3 = $db->prepare($sql3);
+            $rez3->bindParam(':id', $id, PDO::PARAM_INT);
+            $rez3->execute();
+
+            $sql2 = "UPDATE test_gruppa SET podkl=1 WHERE id = :id";
+            $rez2 = $db->prepare($sql2);
+            $rez2->bindParam(':id', $id, PDO::PARAM_INT);
+            $rez2->execute();
+
+        }
+
+    }
+
+    public static function GetRez($id)
+    {
+        $db = Db::getConnection();
+        $sql = "SELECT * FROM test_otvet WHERE gruupa=:id";
+        $rez = $db->prepare($sql);
+        $rez->bindParam(':id', $id, PDO::PARAM_INT);
+        $rez->execute();
+        $i = 0;
+        while ($row = $rez->fetch()) {
+            $list[$i]['id'] = $row['id'];
+            $list[$i]['gruupa'] = $row['gruupa'];
+            $list[$i]['cat'] = $row['cat'];
+            $list[$i]['fio'] = $row['fio'];
+
+            for ($n = 1; $n <= 30; $n++) {
+                $list[$i]['otv' . $n] = $row['otv' . $n];
+            }
+
+            $i++;
+        }
+        return $list;
+
+    }
+
+    public static function GetOnePeople($id)
+    {
+        $db = Db::getConnection();
+
+        $sql = "SELECT * FROM test_otvet WHERE id = :id";
+        $rez = $db->prepare($sql);
+        $rez->bindParam(':id', $id, PDO::PARAM_INT);
+        $rez->execute();
+
+        $row = $rez->fetch(PDO::FETCH_ASSOC);
+
+        return $row;
     }
 }

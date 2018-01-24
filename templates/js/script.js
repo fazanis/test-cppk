@@ -1,9 +1,10 @@
-function onof(id){
-$.post("script.php", {
-operation:"onof",id:id
-});
-location.reload();
+function onof($id) {
+    var code = $id;
+        $.post("/onof/", {code}, function (data) {
 
+            location.reload();
+
+        });
 }
 function dalee(){
 	$("#nachalo").css('display', 'none');
@@ -112,14 +113,16 @@ function addpole() {
 
 }
 function addpoleadtest() {
-    var $i = $("#i").val();
+    $i = $("#i").val();
     $i = parseInt($i);
     $s = $i+1;
     $('#i').val($s);
 
-    $('#eshevar').append('<input type="radio" name="prav2[]" value="'+$s+'"><input class="form-control" type="text" name="var[]" value="'+$s+'">' +
-        '<a href=""><i class="glyphicon glyphicon-minus" aria-hidden="true">' +
-        '</i></a>');
+    $('#eshevar').append('<div class="col-xs-1">' +
+        '<input type="radio" name="prav" id="prav" value="'+$s+'">' +
+        '</div>'+
+        '<div class="col-xs-11"><input class="form-control" type="text" name="otv[]" id="otv'+$s+'" value="'+$s+'">' +
+        '</div>');
 
 
 }
@@ -148,7 +151,8 @@ function addtest() {
     cat = $('#cat2').val();
     yaz = $('#yaz').val();
     vopros = $('#vopros').val();
-    $.post("/addtest/", {cat,yaz,vopros,t}, function (data) {
+    prav = $('input[name=prav]:checked').val();
+    $.post("/addtest/", {cat,yaz,vopros,prav,t}, function (data) {
         alert('Вопрос успешно добавлен');
         $('#vopros').val('');
         //$('#rez').html(data);
