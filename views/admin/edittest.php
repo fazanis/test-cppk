@@ -19,9 +19,6 @@
 
     <select class="form-control" name="cat2" id="cat2">
         <option></option>
-        <? foreach ($litlecat as $itemlitlecat):?>
-            <option value="<?=$itemlitlecat['id']?>"><?=$itemlitlecat['name']?></option>
-        <? endforeach;?>
     </select>
     <label for="inputEmail">Выберите язык</label>
     <select class="form-control" name="yaz">
